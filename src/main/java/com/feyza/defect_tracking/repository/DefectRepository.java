@@ -8,6 +8,3 @@ import org.springframework.stereotype.Repository;
 public interface DefectRepository extends JpaRepository<Defect, Long> {
 
 }
-
-
-
