@@ -7,9 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class DefectService {
 
     private final DefectRepository defectRepository;
@@ -19,12 +21,14 @@ public class DefectService {
         return defectRepository.save(defect);
     }
 
+    @Transactional(readOnly = true)
     public Page<Defect> getAllDefects(Pageable pageable) {
         return defectRepository.findAll(pageable);
     }
 
+    @Transactional(readOnly = true)
     public Defect getDefectById(Long id) {
         return defectRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Defect bulunamadı."));
+                .orElseThrow(() -> new RuntimeException("Defect not found with id: " + id));
     }
 }
