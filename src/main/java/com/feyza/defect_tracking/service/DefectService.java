@@ -1,5 +1,7 @@
 package com.feyza.defect_tracking.service;
 
+import com.feyza.defect_tracking.dto.DefectCreateRequest;
+import com.feyza.defect_tracking.dto.DefectResponse;
 import com.feyza.defect_tracking.entity.Defect;
 import com.feyza.defect_tracking.enums.Status;
 import com.feyza.defect_tracking.repository.DefectRepository;
@@ -16,19 +18,49 @@ public class DefectService {
 
     private final DefectRepository defectRepository;
 
-    public Defect createDefect(Defect defect) {
+    public DefectResponse createDefect(DefectCreateRequest request) {
+
+        Defect defect = new Defect();
+        defect.setTitle(request.getTitle());
+        defect.setDescription(request.getDescription());
+        defect.setSeverity(request.getSeverity());
+        defect.setPriority(request.getPriority());
         defect.setStatus(Status.OPEN);
-        return defectRepository.save(defect);
+
+        Defect savedDefect = defectRepository.save(defect);
+
+        return convertToResponse(savedDefect);
     }
 
     @Transactional(readOnly = true)
-    public Page<Defect> getAllDefects(Pageable pageable) {
-        return defectRepository.findAll(pageable);
+    public Page<DefectResponse> getAllDefects(Pageable pageable) {
+
+        return defectRepository.findAll(pageable)
+                .map(this::convertToResponse);
     }
 
     @Transactional(readOnly = true)
-    public Defect getDefectById(Long id) {
-        return defectRepository.findById(id)
+    public DefectResponse getDefectById(Long id) {
+
+        Defect defect = defectRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Defect not found with id: " + id));
+
+        return convertToResponse(defect);
+    }
+
+    private DefectResponse convertToResponse(Defect defect) {
+
+        DefectResponse response = new DefectResponse();
+
+        response.setId(defect.getId());
+        response.setTitle(defect.getTitle());
+        response.setDescription(defect.getDescription());
+        response.setSeverity(defect.getSeverity());
+        response.setPriority(defect.getPriority());
+        response.setStatus(defect.getStatus());
+        response.setCreatedDate(defect.getCreatedDate());
+        response.setUpdatedDate(defect.getUpdatedDate());
+
+        return response;
     }
 }

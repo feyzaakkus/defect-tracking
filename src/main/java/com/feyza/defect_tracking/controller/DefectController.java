@@ -1,7 +1,9 @@
 package com.feyza.defect_tracking.controller;
 
-import com.feyza.defect_tracking.entity.Defect;
+import com.feyza.defect_tracking.dto.DefectCreateRequest;
+import com.feyza.defect_tracking.dto.DefectResponse;
 import com.feyza.defect_tracking.service.DefectService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,18 +19,17 @@ public class DefectController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Defect createDefect(@RequestBody Defect defect) {
-        return defectService.createDefect(defect);
+    public DefectResponse createDefect(@Valid @RequestBody DefectCreateRequest request) {
+        return defectService.createDefect(request);
     }
 
     @GetMapping
-    public Page<Defect> getAllDefects(Pageable pageable) {
+    public Page<DefectResponse> getAllDefects(Pageable pageable) {
         return defectService.getAllDefects(pageable);
     }
 
     @GetMapping("/{id}")
-    public Defect getDefectById(@PathVariable Long id) {
+    public DefectResponse getDefectById(@PathVariable Long id) {
         return defectService.getDefectById(id);
     }
 }
-
