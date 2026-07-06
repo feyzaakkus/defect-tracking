@@ -4,6 +4,7 @@ import com.feyza.defect_tracking.dto.DefectCreateRequest;
 import com.feyza.defect_tracking.dto.DefectResponse;
 import com.feyza.defect_tracking.entity.Defect;
 import com.feyza.defect_tracking.enums.Status;
+import com.feyza.defect_tracking.exception.ResourceNotFoundException;
 import com.feyza.defect_tracking.repository.DefectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -43,8 +44,7 @@ public class DefectService {
     public DefectResponse getDefectById(Long id) {
 
         Defect defect = defectRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Defect not found with id: " + id));
-
+                .orElseThrow(() -> new ResourceNotFoundException("Defect not found with id: " + id));
         return convertToResponse(defect);
     }
 
