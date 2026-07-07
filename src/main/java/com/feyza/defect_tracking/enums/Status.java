@@ -2,8 +2,6 @@ package com.feyza.defect_tracking.enums;
 
 public enum Status {
     OPEN,
-    ASSIGNED,
-    FIXED,
-    VERIFIED,
+    IN_PROGRESS,
     CLOSED
 }
