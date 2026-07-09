@@ -25,3 +25,4 @@ public class DefectCreateRequest {
     @NotNull(message = "Priority is required.")
     private Priority priority;
 }
+

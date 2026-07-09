@@ -5,3 +5,4 @@ public enum Role {
     TESTER,
     DEVELOPER
 }
+

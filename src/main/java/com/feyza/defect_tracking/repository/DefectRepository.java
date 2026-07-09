@@ -11,3 +11,4 @@ import org.springframework.stereotype.Repository;
 public interface DefectRepository extends JpaRepository<Defect, Long> {
     Page<Defect> findByStatus(Status status, Pageable pageable);
 }
+
