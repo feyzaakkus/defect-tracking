@@ -61,6 +61,7 @@ public class DataInitializer implements CommandLineRunner {
             defect1.setStatus(Status.OPEN);
             defect1.setCreatedBy(defaultUser);
             defect1.setCreatedDate(LocalDateTime.now());
+            defect1.setUpdatedDate(LocalDateTime.now());
 
             Defect defect2 = new Defect();
             defect2.setTitle("Profile Picture NullPointer Error");
@@ -70,6 +71,7 @@ public class DataInitializer implements CommandLineRunner {
             defect2.setStatus(Status.ASSIGNED);
             defect2.setCreatedBy(defaultUser);
             defect2.setCreatedDate(LocalDateTime.now());
+            defect2.setUpdatedDate(LocalDateTime.now());
 
             Defect defect3 = new Defect();
             defect3.setTitle("Typo in Footer Links");
@@ -79,6 +81,7 @@ public class DataInitializer implements CommandLineRunner {
             defect3.setStatus(Status.OPEN);
             defect3.setCreatedBy(defaultUser);
             defect3.setCreatedDate(LocalDateTime.now());
+            defect3.setUpdatedDate(LocalDateTime.now());
 
             Defect defect4 = new Defect();
             defect4.setTitle("Payment Gateway Timeout");
@@ -88,6 +91,7 @@ public class DataInitializer implements CommandLineRunner {
             defect4.setStatus(Status.OPEN);
             defect4.setCreatedBy(defaultUser);
             defect4.setCreatedDate(LocalDateTime.now());
+            defect4.setUpdatedDate(LocalDateTime.now());
 
             Defect defect5 = new Defect();
             defect5.setTitle("Excel Export Memory Leak");
@@ -97,6 +101,7 @@ public class DataInitializer implements CommandLineRunner {
             defect5.setStatus(Status.CLOSED);
             defect5.setCreatedBy(defaultUser);
             defect5.setCreatedDate(LocalDateTime.now());
+            defect5.setUpdatedDate(LocalDateTime.now());
 
             defectRepository.save(defect1);
             defectRepository.save(defect2);

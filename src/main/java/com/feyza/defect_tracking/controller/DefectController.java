@@ -26,7 +26,11 @@ public class DefectController {
     }
 
     @GetMapping
-    public Page<DefectResponse> getAllDefects(Pageable pageable) {
+    public Page<DefectResponse> getAllDefects(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size);
         return defectService.getAllDefects(pageable);
     }
 
@@ -47,7 +51,12 @@ public class DefectController {
     }
 
     @GetMapping("/status/{status}")
-    public Page<DefectResponse> getDefectsByStatus(@PathVariable Status status, Pageable pageable) {
+    public Page<DefectResponse> getDefectsByStatus(
+            @PathVariable Status status,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size);
         return defectService.getDefectsByStatus(status, pageable);
     }
 
