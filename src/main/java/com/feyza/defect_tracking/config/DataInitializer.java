@@ -10,6 +10,7 @@ import com.feyza.defect_tracking.repository.DefectRepository;
 import com.feyza.defect_tracking.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ public class DataInitializer implements CommandLineRunner {
 
     private final DefectRepository defectRepository;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) {
@@ -28,24 +30,24 @@ public class DataInitializer implements CommandLineRunner {
 
             User admin = new User();
             admin.setUsername("admin");
-            admin.setPassword("12345");
+            admin.setPassword(passwordEncoder.encode("12345"));
             admin.setRole(Role.ADMIN);
 
             User tester = new User();
             tester.setUsername("tester");
-            tester.setPassword("12345");
+            tester.setPassword(passwordEncoder.encode("12345"));
             tester.setRole(Role.TESTER);
 
             User developer = new User();
             developer.setUsername("developer");
-            developer.setPassword("12345");
+            developer.setPassword(passwordEncoder.encode("12345"));
             developer.setRole(Role.DEVELOPER);
 
             userRepository.save(admin);
             userRepository.save(tester);
             userRepository.save(developer);
 
-            System.out.println("Sample users created successfully.");
+            System.out.println("Sample users created successfully with encoded passwords.");
         }
 
         if (defectRepository.count() == 0) {
