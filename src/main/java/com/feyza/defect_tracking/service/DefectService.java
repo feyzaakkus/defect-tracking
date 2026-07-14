@@ -1,8 +1,8 @@
 package com.feyza.defect_tracking.service;
 
-import com.feyza.defect_tracking.dto.DefectCreateRequest;
-import com.feyza.defect_tracking.dto.DefectResponse;
-import com.feyza.defect_tracking.dto.DefectUpdateRequest;
+import com.feyza.defect_tracking.dto.request.DefectCreateRequest;
+import com.feyza.defect_tracking.dto.response.DefectResponse;
+import com.feyza.defect_tracking.dto.request.DefectUpdateRequest;
 import com.feyza.defect_tracking.entity.Defect;
 import com.feyza.defect_tracking.entity.User;
 import com.feyza.defect_tracking.enums.Status;

@@ -1,4 +1,4 @@
-package com.feyza.defect_tracking.dto;
+package com.feyza.defect_tracking.dto.response;
 
 import com.feyza.defect_tracking.enums.Role;
 import lombok.Getter;

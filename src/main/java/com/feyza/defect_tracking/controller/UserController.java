@@ -1,6 +1,6 @@
 package com.feyza.defect_tracking.controller;
 
-import com.feyza.defect_tracking.dto.UserResponse;
+import com.feyza.defect_tracking.dto.response.UserResponse;
 import com.feyza.defect_tracking.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

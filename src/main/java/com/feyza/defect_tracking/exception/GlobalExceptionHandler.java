@@ -1,6 +1,6 @@
 package com.feyza.defect_tracking.exception;
 
-import com.feyza.defect_tracking.dto.ErrorResponse;
+import com.feyza.defect_tracking.dto.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

@@ -1,7 +1,8 @@
-package com.feyza.defect_tracking.dto;
+package com.feyza.defect_tracking.dto.request;
 
 import com.feyza.defect_tracking.enums.Priority;
 import com.feyza.defect_tracking.enums.Severity;
+import com.feyza.defect_tracking.enums.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -10,10 +11,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DefectCreateRequest {
+public class DefectUpdateRequest {
 
     @NotBlank(message = "Title cannot be empty.")
-    @Size(max = 100, message = "Title can be up to 100 characters.")
+    @Size(max = 100, message = "Title cannot exceed 100 characters.")
     private String title;
 
     @NotBlank(message = "Description cannot be empty.")
@@ -24,5 +25,17 @@ public class DefectCreateRequest {
 
     @NotNull(message = "Priority is required.")
     private Priority priority;
+
+    @NotNull(message = "Status is required.")
+    private Status status;
+
 }
+
+
+
+
+
+
+
+
 

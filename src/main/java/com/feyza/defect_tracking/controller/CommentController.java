@@ -1,7 +1,7 @@
 package com.feyza.defect_tracking.controller;
 
-import com.feyza.defect_tracking.dto.CommentCreateRequest;
-import com.feyza.defect_tracking.dto.CommentResponse;
+import com.feyza.defect_tracking.dto.request.CommentCreateRequest;
+import com.feyza.defect_tracking.dto.response.CommentResponse;
 import com.feyza.defect_tracking.service.CommentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

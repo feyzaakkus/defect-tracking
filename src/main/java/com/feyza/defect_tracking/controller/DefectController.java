@@ -1,14 +1,13 @@
 package com.feyza.defect_tracking.controller;
 
-import com.feyza.defect_tracking.dto.DefectCreateRequest;
-import com.feyza.defect_tracking.dto.DefectResponse;
-import com.feyza.defect_tracking.dto.DefectUpdateRequest;
+import com.feyza.defect_tracking.dto.request.DefectCreateRequest;
+import com.feyza.defect_tracking.dto.response.DefectResponse;
+import com.feyza.defect_tracking.dto.request.DefectUpdateRequest;
 import com.feyza.defect_tracking.enums.Status;
 import com.feyza.defect_tracking.service.DefectService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

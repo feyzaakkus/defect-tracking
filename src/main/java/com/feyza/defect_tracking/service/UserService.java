@@ -1,6 +1,6 @@
 package com.feyza.defect_tracking.service;
 
-import com.feyza.defect_tracking.dto.UserResponse;
+import com.feyza.defect_tracking.dto.response.UserResponse;
 import com.feyza.defect_tracking.entity.User;
 import com.feyza.defect_tracking.exception.ResourceNotFoundException;
 import com.feyza.defect_tracking.repository.UserRepository;

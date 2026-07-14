@@ -1,4 +1,4 @@
-package com.feyza.defect_tracking.dto;
+package com.feyza.defect_tracking.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
