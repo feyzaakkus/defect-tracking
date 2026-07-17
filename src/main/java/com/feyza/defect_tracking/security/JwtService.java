@@ -1,4 +1,4 @@
-package com.feyza.defect_tracking.service;
+package com.feyza.defect_tracking.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

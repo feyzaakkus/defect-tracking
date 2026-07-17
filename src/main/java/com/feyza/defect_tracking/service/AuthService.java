@@ -2,6 +2,7 @@ package com.feyza.defect_tracking.service;
 
 import com.feyza.defect_tracking.dto.auth.AuthRequest;
 import com.feyza.defect_tracking.dto.auth.AuthResponse;
+import com.feyza.defect_tracking.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package com.feyza.defect_tracking.service;
+package com.feyza.defect_tracking.security;
 
 import com.feyza.defect_tracking.entity.User;
 import com.feyza.defect_tracking.repository.UserRepository;
