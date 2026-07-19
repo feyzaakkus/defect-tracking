@@ -59,8 +59,17 @@ public class DefectController {
         return defectService.getDefectsByStatus(status, pageable);
     }
 
+    @PatchMapping("/{id}/assign")
+    public DefectResponse assignDefect(@PathVariable Long id, @RequestParam Long developerId) {
+        return defectService.assignDefect(id, developerId);
+    }
+
     @PatchMapping("/{id}/status")
-    public DefectResponse updateDefectStatus(@PathVariable Long id, @RequestParam Status status) {
-        return defectService.updateDefectStatus(id, status);
+    public DefectResponse updateDefectStatus(
+            @PathVariable Long id,
+            @RequestParam Status status,
+            @RequestParam(required = false) String resolutionNote) {
+        return defectService.updateDefectStatus(id, status, resolutionNote);
     }
 }
+

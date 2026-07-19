@@ -10,6 +10,7 @@ import com.feyza.defect_tracking.repository.CommentRepository;
 import com.feyza.defect_tracking.repository.DefectRepository;
 import com.feyza.defect_tracking.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder; // Eklendi
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,17 +29,22 @@ public class CommentService {
         Defect defect = defectRepository.findById(request.getDefectId())
                 .orElseThrow(() -> new ResourceNotFoundException("Defect not found with id: " + request.getDefectId()));
 
-        User mockUser = userRepository.findByUsername("tester")
-                .orElseThrow(() -> new ResourceNotFoundException("Tester user not found."));
+        User currentUser = getCurrentUser();
 
         Comment comment = new Comment();
         comment.setDefect(defect);
-        comment.setUser(mockUser);
+        comment.setUser(currentUser);
         comment.setCommentText(request.getCommentText());
         comment.setCreatedDate(LocalDateTime.now());
 
         Comment savedComment = commentRepository.save(comment);
         return convertToResponse(savedComment);
+    }
+
+    private User getCurrentUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
     }
 
     private CommentResponse convertToResponse(Comment comment) {

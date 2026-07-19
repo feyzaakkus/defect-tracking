@@ -14,3 +14,4 @@ public class AuthRequest {
     @NotBlank(message = "Password cannot be empty")
     private String password;
 }
+

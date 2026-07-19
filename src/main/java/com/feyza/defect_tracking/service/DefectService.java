@@ -13,6 +13,7 @@ import com.feyza.defect_tracking.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,9 +27,9 @@ public class DefectService {
     private final DefectRepository defectRepository;
     private final UserRepository userRepository;
 
+    @PreAuthorize("hasRole('TESTER')")
     public DefectResponse createDefect(DefectCreateRequest request) {
-        User currentTester = userRepository.findById(1L)
-                .orElseThrow(() -> new ResourceNotFoundException("Mock Tester user not found."));
+        User currentTester = getCurrentUser();
 
         Defect defect = new Defect();
         defect.setTitle(request.getTitle());
@@ -57,25 +58,29 @@ public class DefectService {
         return convertToResponse(defect);
     }
 
+    @PreAuthorize("hasRole('TESTER')")
     public DefectResponse updateDefect(Long id, DefectUpdateRequest request) {
         Defect defect = defectRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Defect not found with id: " + id));
 
-        if (defect.getStatus() != request.getStatus()) {
-            validateStatusTransition(defect.getStatus(), request.getStatus());
+        User currentUser = getCurrentUser();
+
+        if (!defect.getCreatedBy().getId().equals(currentUser.getId())) {
+            throw new BusinessException("Only the TESTER who created this defect can update its details!");
         }
+
 
         defect.setTitle(request.getTitle());
         defect.setDescription(request.getDescription());
         defect.setSeverity(request.getSeverity());
         defect.setPriority(request.getPriority());
-        defect.setStatus(request.getStatus());
         defect.setUpdatedDate(LocalDateTime.now());
 
         Defect updatedDefect = defectRepository.save(defect);
         return convertToResponse(updatedDefect);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteDefect(Long id) {
         Defect defect = defectRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Defect not found with id: " + id));
@@ -89,11 +94,57 @@ public class DefectService {
                 .map(this::convertToResponse);
     }
 
-    public DefectResponse updateDefectStatus(Long id, Status newStatus) {
+    @PreAuthorize("hasAnyRole('TESTER', 'ADMIN')")
+    public DefectResponse assignDefect(Long id, Long developerId) {
         Defect defect = defectRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Defect not found with id: " + id));
 
+        User developer = userRepository.findById(developerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Developer not found with id: " + developerId));
+
+        if (!"DEVELOPER".equals(developer.getRole().name())) {
+            throw new BusinessException("You can only assign a defect to a DEVELOPER!");
+        }
+
+        validateStatusTransition(defect.getStatus(), Status.ASSIGNED);
+
+        defect.setAssignedDeveloper(developer);
+        defect.setStatus(Status.ASSIGNED);
+        defect.setUpdatedDate(LocalDateTime.now());
+
+        Defect updatedDefect = defectRepository.save(defect);
+        return convertToResponse(updatedDefect);
+    }
+
+    @PreAuthorize("hasAnyRole('TESTER', 'DEVELOPER')")
+    public DefectResponse updateDefectStatus(Long id, Status newStatus, String resolutionNote) {
+        Defect defect = defectRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Defect not found with id: " + id));
+
+        User currentUser = getCurrentUser();
         validateStatusTransition(defect.getStatus(), newStatus);
+
+        if (newStatus == Status.FIXED) {
+            if (defect.getAssignedDeveloper() == null || !defect.getAssignedDeveloper().getId().equals(currentUser.getId())) {
+                throw new BusinessException("Only the assigned DEVELOPER can mark this defect as FIXED!");
+            }
+            if (resolutionNote == null || resolutionNote.trim().isEmpty()) {
+                throw new BusinessException("Resolution note is required when resolving a defect!");
+            }
+            defect.setResolutionNote(resolutionNote);
+        }
+
+        if (newStatus == Status.VERIFIED) {
+            if (!defect.getCreatedBy().getId().equals(currentUser.getId())) {
+                throw new BusinessException("Only the TESTER who created this defect can verify it!");
+            }
+        }
+
+        if (newStatus == Status.CLOSED) {
+            if (!defect.getCreatedBy().getId().equals(currentUser.getId())) {
+                throw new BusinessException("Only the TESTER who created this defect can close it!");
+            }
+        }
 
         defect.setStatus(newStatus);
         defect.setUpdatedDate(LocalDateTime.now());
@@ -135,6 +186,16 @@ public class DefectService {
         }
     }
 
+    private User getCurrentUser() {
+        String username = org.springframework.security.core.context.SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
+    }
+
     private DefectResponse convertToResponse(Defect defect) {
         DefectResponse response = new DefectResponse();
         response.setId(defect.getId());
@@ -145,6 +206,10 @@ public class DefectService {
         response.setStatus(defect.getStatus());
         response.setCreatedDate(defect.getCreatedDate());
         response.setUpdatedDate(defect.getUpdatedDate());
+        if (defect.getAssignedDeveloper() != null) {
+            response.setAssignedDeveloperId(defect.getAssignedDeveloper().getId());
+        }
+        response.setResolutionNote(defect.getResolutionNote());
         return response;
     }
 }

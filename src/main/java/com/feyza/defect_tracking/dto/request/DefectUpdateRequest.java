@@ -2,7 +2,6 @@ package com.feyza.defect_tracking.dto.request;
 
 import com.feyza.defect_tracking.enums.Priority;
 import com.feyza.defect_tracking.enums.Severity;
-import com.feyza.defect_tracking.enums.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -25,9 +24,6 @@ public class DefectUpdateRequest {
 
     @NotNull(message = "Priority is required.")
     private Priority priority;
-
-    @NotNull(message = "Status is required.")
-    private Status status;
 
 }
 

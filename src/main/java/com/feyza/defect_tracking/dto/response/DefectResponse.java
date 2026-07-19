@@ -16,6 +16,8 @@ public class DefectResponse {
     private Severity severity;
     private Priority priority;
     private Status status;
+    private Long assignedDeveloperId;
+    private String resolutionNote;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 }
