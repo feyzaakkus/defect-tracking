@@ -1,13 +1,18 @@
 package com.feyza.defect_tracking.controller;
 
 import com.feyza.defect_tracking.dto.request.DefectCreateRequest;
-import com.feyza.defect_tracking.dto.response.DefectResponse;
+import com.feyza.defect_tracking.dto.request.DefectFilterRequest;
 import com.feyza.defect_tracking.dto.request.DefectUpdateRequest;
+import com.feyza.defect_tracking.dto.response.DefectResponse;
+import com.feyza.defect_tracking.enums.Priority;
+import com.feyza.defect_tracking.enums.Severity;
 import com.feyza.defect_tracking.enums.Status;
 import com.feyza.defect_tracking.service.DefectService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +34,27 @@ public class DefectController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
 
-        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return defectService.getAllDefects(pageable);
+    }
+
+    @GetMapping("/search")
+    public Page<DefectResponse> filterDefects(
+            @RequestParam(required = false) Status status,
+            @RequestParam(required = false) Severity severity,
+            @RequestParam(required = false) Priority priority,
+            @RequestParam(required = false) Long assignedDeveloperId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        DefectFilterRequest filterRequest = new DefectFilterRequest();
+        filterRequest.setStatus(status);
+        filterRequest.setSeverity(severity);
+        filterRequest.setPriority(priority);
+        filterRequest.setAssignedDeveloperId(assignedDeveloperId);
+
+        Pageable pageable = PageRequest.of(page, size);
+        return defectService.filterDefects(filterRequest, pageable);
     }
 
     @GetMapping("/{id}")
@@ -55,7 +79,7 @@ public class DefectController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
 
-        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         return defectService.getDefectsByStatus(status, pageable);
     }
 
@@ -72,4 +96,3 @@ public class DefectController {
         return defectService.updateDefectStatus(id, status, resolutionNote);
     }
 }
-

@@ -1,5 +1,6 @@
 package com.feyza.defect_tracking.service;
 
+import com.feyza.defect_tracking.annotation.LogExecution;
 import com.feyza.defect_tracking.dto.request.CommentCreateRequest;
 import com.feyza.defect_tracking.dto.response.CommentResponse;
 import com.feyza.defect_tracking.entity.Comment;
@@ -10,7 +11,7 @@ import com.feyza.defect_tracking.repository.CommentRepository;
 import com.feyza.defect_tracking.repository.DefectRepository;
 import com.feyza.defect_tracking.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder; // Eklendi
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ public class CommentService {
     private final DefectRepository defectRepository;
     private final UserRepository userRepository;
 
+    @LogExecution(action = "CREATE_COMMENT", entityType = "COMMENT")
     public CommentResponse createComment(CommentCreateRequest request) {
         Defect defect = defectRepository.findById(request.getDefectId())
                 .orElseThrow(() -> new ResourceNotFoundException("Defect not found with id: " + request.getDefectId()));
@@ -64,3 +66,4 @@ public class CommentService {
         return response;
     }
 }
+

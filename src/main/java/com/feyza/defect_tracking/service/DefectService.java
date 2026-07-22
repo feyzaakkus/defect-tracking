@@ -1,5 +1,8 @@
 package com.feyza.defect_tracking.service;
 
+import com.feyza.defect_tracking.annotation.LogExecution;
+import com.feyza.defect_tracking.dto.request.DefectFilterRequest;
+import com.feyza.defect_tracking.repository.DefectSpecification;
 import com.feyza.defect_tracking.dto.request.DefectCreateRequest;
 import com.feyza.defect_tracking.dto.response.DefectResponse;
 import com.feyza.defect_tracking.dto.request.DefectUpdateRequest;
@@ -27,6 +30,7 @@ public class DefectService {
     private final DefectRepository defectRepository;
     private final UserRepository userRepository;
 
+    @LogExecution(action = "CREATE_DEFECT", entityType = "DEFECT")
     @PreAuthorize("hasRole('TESTER')")
     public DefectResponse createDefect(DefectCreateRequest request) {
         User currentTester = getCurrentUser();
@@ -58,6 +62,7 @@ public class DefectService {
         return convertToResponse(defect);
     }
 
+    @LogExecution(action = "UPDATE_DEFECT", entityType = "DEFECT")
     @PreAuthorize("hasRole('TESTER')")
     public DefectResponse updateDefect(Long id, DefectUpdateRequest request) {
         Defect defect = defectRepository.findById(id)
@@ -65,21 +70,18 @@ public class DefectService {
 
         User currentUser = getCurrentUser();
 
-        if (!defect.getCreatedBy().getId().equals(currentUser.getId())) {
-            throw new BusinessException("Only the TESTER who created this defect can update its details!");
+        if (defect.getCreatedBy() == null || !defect.getCreatedBy().getId().equals(currentUser.getId())) {
+            throw new BusinessException("Only the TESTER who created this defect can update its description!");
         }
 
-
-        defect.setTitle(request.getTitle());
         defect.setDescription(request.getDescription());
-        defect.setSeverity(request.getSeverity());
-        defect.setPriority(request.getPriority());
         defect.setUpdatedDate(LocalDateTime.now());
 
         Defect updatedDefect = defectRepository.save(defect);
         return convertToResponse(updatedDefect);
     }
 
+    @LogExecution(action = "DELETE_DEFECT", entityType = "DEFECT")
     @PreAuthorize("hasRole('ADMIN')")
     public void deleteDefect(Long id) {
         Defect defect = defectRepository.findById(id)
@@ -94,6 +96,7 @@ public class DefectService {
                 .map(this::convertToResponse);
     }
 
+    @LogExecution(action = "ASSIGN_DEFECT", entityType = "DEFECT")
     @PreAuthorize("hasAnyRole('TESTER', 'ADMIN')")
     public DefectResponse assignDefect(Long id, Long developerId) {
         Defect defect = defectRepository.findById(id)
@@ -116,6 +119,7 @@ public class DefectService {
         return convertToResponse(updatedDefect);
     }
 
+    @LogExecution(action = "UPDATE_DEFECT_STATUS", entityType = "DEFECT")
     @PreAuthorize("hasAnyRole('TESTER', 'DEVELOPER')")
     public DefectResponse updateDefectStatus(Long id, Status newStatus, String resolutionNote) {
         Defect defect = defectRepository.findById(id)
@@ -135,13 +139,13 @@ public class DefectService {
         }
 
         if (newStatus == Status.VERIFIED) {
-            if (!defect.getCreatedBy().getId().equals(currentUser.getId())) {
+            if (defect.getCreatedBy() == null || !defect.getCreatedBy().getId().equals(currentUser.getId())) {
                 throw new BusinessException("Only the TESTER who created this defect can verify it!");
             }
         }
 
         if (newStatus == Status.CLOSED) {
-            if (!defect.getCreatedBy().getId().equals(currentUser.getId())) {
+            if (defect.getCreatedBy() == null || !defect.getCreatedBy().getId().equals(currentUser.getId())) {
                 throw new BusinessException("Only the TESTER who created this defect can close it!");
             }
         }
@@ -211,6 +215,12 @@ public class DefectService {
         }
         response.setResolutionNote(defect.getResolutionNote());
         return response;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<DefectResponse> filterDefects(DefectFilterRequest filterRequest, Pageable pageable) {
+        return defectRepository.findAll(DefectSpecification.filterDefects(filterRequest), pageable)
+                .map(this::convertToResponse);
     }
 }
 

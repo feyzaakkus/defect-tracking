@@ -26,93 +26,91 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        if (userRepository.count() == 0) {
+        // Her başlatmada verileri sıfırlayarak şifre ve kullanıcı çakışmalarını çözer
+        defectRepository.deleteAll();
+        userRepository.deleteAll();
 
-            User admin = new User();
-            admin.setUsername("admin");
-            admin.setPassword(passwordEncoder.encode("12345"));
-            admin.setRole(Role.ADMIN);
+        // 1. KULLANICILAR (Şifrelerin hepsi: 1234)
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setPassword(passwordEncoder.encode("1234"));
+        admin.setRole(Role.ADMIN);
 
-            User tester = new User();
-            tester.setUsername("tester");
-            tester.setPassword(passwordEncoder.encode("12345"));
-            tester.setRole(Role.TESTER);
+        User tester = new User();
+        tester.setUsername("tester");
+        tester.setPassword(passwordEncoder.encode("1234"));
+        tester.setRole(Role.TESTER);
 
-            User developer = new User();
-            developer.setUsername("developer");
-            developer.setPassword(passwordEncoder.encode("12345"));
-            developer.setRole(Role.DEVELOPER);
+        User developer = new User();
+        developer.setUsername("developer");
+        developer.setPassword(passwordEncoder.encode("1234"));
+        developer.setRole(Role.DEVELOPER);
 
-            userRepository.save(admin);
-            userRepository.save(tester);
-            userRepository.save(developer);
+        userRepository.save(admin);
+        userRepository.save(tester);
+        userRepository.save(developer);
 
-            System.out.println("Sample users created successfully with encoded passwords.");
-        }
+        System.out.println("Sample users created successfully with encoded passwords (Password: 1234).");
 
-        if (defectRepository.count() == 0) {
+        // 2. DEFECT ÖRNEK VERİLERİ
+        User defaultUser = userRepository.findByUsername("tester").orElseThrow();
 
-            User defaultUser = userRepository.findByUsername("tester")
-                    .orElseThrow();
+        Defect defect1 = new Defect();
+        defect1.setTitle("Login Page Button Crash");
+        defect1.setDescription("Login button does not respond when clicked on mobile browsers.");
+        defect1.setSeverity(Severity.CRITICAL);
+        defect1.setPriority(Priority.HIGH);
+        defect1.setStatus(Status.OPEN);
+        defect1.setCreatedBy(defaultUser);
+        defect1.setCreatedDate(LocalDateTime.now());
+        defect1.setUpdatedDate(LocalDateTime.now());
 
-            Defect defect1 = new Defect();
-            defect1.setTitle("Login Page Button Crash");
-            defect1.setDescription("Login button does not respond when clicked on mobile browsers.");
-            defect1.setSeverity(Severity.CRITICAL);
-            defect1.setPriority(Priority.HIGH);
-            defect1.setStatus(Status.OPEN);
-            defect1.setCreatedBy(defaultUser);
-            defect1.setCreatedDate(LocalDateTime.now());
-            defect1.setUpdatedDate(LocalDateTime.now());
+        Defect defect2 = new Defect();
+        defect2.setTitle("Profile Picture NullPointer Error");
+        defect2.setDescription("Throws NullPointerException when user deletes their profile picture.");
+        defect2.setSeverity(Severity.HIGH);
+        defect2.setPriority(Priority.MEDIUM);
+        defect2.setStatus(Status.ASSIGNED);
+        defect2.setCreatedBy(defaultUser);
+        defect2.setCreatedDate(LocalDateTime.now());
+        defect2.setUpdatedDate(LocalDateTime.now());
 
-            Defect defect2 = new Defect();
-            defect2.setTitle("Profile Picture NullPointer Error");
-            defect2.setDescription("Throws NullPointerException when user deletes their profile picture.");
-            defect2.setSeverity(Severity.HIGH);
-            defect2.setPriority(Priority.MEDIUM);
-            defect2.setStatus(Status.ASSIGNED);
-            defect2.setCreatedBy(defaultUser);
-            defect2.setCreatedDate(LocalDateTime.now());
-            defect2.setUpdatedDate(LocalDateTime.now());
+        Defect defect3 = new Defect();
+        defect3.setTitle("Typo in Footer Links");
+        defect3.setDescription("The word 'Contact Us' is misspelled as 'Contat Us' in footer.");
+        defect3.setSeverity(Severity.LOW);
+        defect3.setPriority(Priority.LOW);
+        defect3.setStatus(Status.OPEN);
+        defect3.setCreatedBy(defaultUser);
+        defect3.setCreatedDate(LocalDateTime.now());
+        defect3.setUpdatedDate(LocalDateTime.now());
 
-            Defect defect3 = new Defect();
-            defect3.setTitle("Typo in Footer Links");
-            defect3.setDescription("The word 'Contact Us' is misspelled as 'Contat Us' in footer.");
-            defect3.setSeverity(Severity.LOW);
-            defect3.setPriority(Priority.LOW);
-            defect3.setStatus(Status.OPEN);
-            defect3.setCreatedBy(defaultUser);
-            defect3.setCreatedDate(LocalDateTime.now());
-            defect3.setUpdatedDate(LocalDateTime.now());
+        Defect defect4 = new Defect();
+        defect4.setTitle("Payment Gateway Timeout");
+        defect4.setDescription("Credit card transactions time out after 30 seconds of inactivity.");
+        defect4.setSeverity(Severity.CRITICAL);
+        defect4.setPriority(Priority.HIGH);
+        defect4.setStatus(Status.OPEN);
+        defect4.setCreatedBy(defaultUser);
+        defect4.setCreatedDate(LocalDateTime.now());
+        defect4.setUpdatedDate(LocalDateTime.now());
 
-            Defect defect4 = new Defect();
-            defect4.setTitle("Payment Gateway Timeout");
-            defect4.setDescription("Credit card transactions time out after 30 seconds of inactivity.");
-            defect4.setSeverity(Severity.CRITICAL);
-            defect4.setPriority(Priority.HIGH);
-            defect4.setStatus(Status.OPEN);
-            defect4.setCreatedBy(defaultUser);
-            defect4.setCreatedDate(LocalDateTime.now());
-            defect4.setUpdatedDate(LocalDateTime.now());
+        Defect defect5 = new Defect();
+        defect5.setTitle("Excel Export Memory Leak");
+        defect5.setDescription("Exporting 10k+ rows causes OutOfMemoryError on the server.");
+        defect5.setSeverity(Severity.HIGH);
+        defect5.setPriority(Priority.HIGH);
+        defect5.setStatus(Status.CLOSED);
+        defect5.setCreatedBy(defaultUser);
+        defect5.setCreatedDate(LocalDateTime.now());
+        defect5.setUpdatedDate(LocalDateTime.now());
 
-            Defect defect5 = new Defect();
-            defect5.setTitle("Excel Export Memory Leak");
-            defect5.setDescription("Exporting 10k+ rows causes OutOfMemoryError on the server.");
-            defect5.setSeverity(Severity.HIGH);
-            defect5.setPriority(Priority.HIGH);
-            defect5.setStatus(Status.CLOSED);
-            defect5.setCreatedBy(defaultUser);
-            defect5.setCreatedDate(LocalDateTime.now());
-            defect5.setUpdatedDate(LocalDateTime.now());
+        defectRepository.save(defect1);
+        defectRepository.save(defect2);
+        defectRepository.save(defect3);
+        defectRepository.save(defect4);
+        defectRepository.save(defect5);
 
-            defectRepository.save(defect1);
-            defectRepository.save(defect2);
-            defectRepository.save(defect3);
-            defectRepository.save(defect4);
-            defectRepository.save(defect5);
-
-            System.out.println("Database pre-populated with sample data successfully.");
-        }
+        System.out.println("Database pre-populated with sample data successfully.");
     }
 }
-

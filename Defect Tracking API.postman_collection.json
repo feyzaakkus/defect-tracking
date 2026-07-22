@@ -1,0 +1,1312 @@
+{
+  "info": {
+    "_postman_id": "2c841e8c-b7ad-4874-9c11-55db5dbb9965",
+    "name": "Defect Tracking API",
+    "description": "Defect Tracking System API Documentation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56781721",
+    "_collection_link": "https://go.postman.co/collection/56781721-2c841e8c-b7ad-4874-9c11-55db5dbb9965?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "defects",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "status",
+                  "item": [
+                    {
+                      "name": "update Defect Status",
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/defects/:id/status?status=ASSIGNED&resolutionNote=string",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "defects",
+                            ":id",
+                            "status"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "ASSIGNED"
+                            },
+                            {
+                              "key": "resolutionNote",
+                              "value": "string"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "6816"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/defects/:id/status?status=ASSIGNED&resolutionNote=string",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "defects",
+                                ":id",
+                                "status"
+                              ],
+                              "query": [
+                                {
+                                  "key": "status",
+                                  "value": "ASSIGNED"
+                                },
+                                {
+                                  "key": "resolutionNote",
+                                  "value": "string"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "6816"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "*/*"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"id\": 2322,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"severity\": \"LOW\",\n  \"priority\": \"LOW\",\n  \"status\": \"VERIFIED\",\n  \"assignedDeveloperId\": 5275,\n  \"resolutionNote\": \"string\",\n  \"createdDate\": \"1962-04-06T13:25:11.508Z\",\n  \"updatedDate\": \"1963-06-13T21:47:54.030Z\"\n}"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "assign",
+                  "item": [
+                    {
+                      "name": "assign Defect",
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/defects/:id/assign?developerId=6816",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "defects",
+                            ":id",
+                            "assign"
+                          ],
+                          "query": [
+                            {
+                              "key": "developerId",
+                              "value": "6816"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "6816"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/defects/:id/assign?developerId=6816",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "defects",
+                                ":id",
+                                "assign"
+                              ],
+                              "query": [
+                                {
+                                  "key": "developerId",
+                                  "value": "6816"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "6816"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "*/*"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"id\": 2322,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"severity\": \"LOW\",\n  \"priority\": \"LOW\",\n  \"status\": \"VERIFIED\",\n  \"assignedDeveloperId\": 5275,\n  \"resolutionNote\": \"string\",\n  \"createdDate\": \"1962-04-06T13:25:11.508Z\",\n  \"updatedDate\": \"1963-06-13T21:47:54.030Z\"\n}"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "get Defect By Id",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/defects/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "defects",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "6816"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/defects/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "defects",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "6816"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 2322,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"severity\": \"LOW\",\n  \"priority\": \"LOW\",\n  \"status\": \"VERIFIED\",\n  \"assignedDeveloperId\": 5275,\n  \"resolutionNote\": \"string\",\n  \"createdDate\": \"1962-04-06T13:25:11.508Z\",\n  \"updatedDate\": \"1963-06-13T21:47:54.030Z\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "update Defect",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/defects/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "defects",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "6816"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"string\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/defects/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "defects",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "6816"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": 2322,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"severity\": \"LOW\",\n  \"priority\": \"LOW\",\n  \"status\": \"VERIFIED\",\n  \"assignedDeveloperId\": 5275,\n  \"resolutionNote\": \"string\",\n  \"createdDate\": \"1962-04-06T13:25:11.508Z\",\n  \"updatedDate\": \"1963-06-13T21:47:54.030Z\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "delete Defect",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/defects/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "defects",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "6816"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/defects/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "defects",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "6816"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "item": [
+                {
+                  "name": "{status}",
+                  "item": [
+                    {
+                      "name": "get Defects By Status",
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/defects/status/:status?page=0&size=10",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "defects",
+                            "status",
+                            ":status"
+                          ],
+                          "query": [
+                            {
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "key": "size",
+                              "value": "10"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "status",
+                              "value": "ASSIGNED"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "*/*"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/defects/status/:status?page=0&size=10",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "defects",
+                                "status",
+                                ":status"
+                              ],
+                              "query": [
+                                {
+                                  "key": "page",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "size",
+                                  "value": "10"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "status",
+                                  "value": "ASSIGNED"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "*/*"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"totalElements\": 9482,\n  \"totalPages\": 8672,\n  \"numberOfElements\": 2782,\n  \"pageable\": {\n    \"unpaged\": true,\n    \"paged\": false,\n    \"pageNumber\": 8026,\n    \"pageSize\": 4748,\n    \"offset\": 6338,\n    \"sort\": [\n      {\n        \"direction\": \"string\",\n        \"nullHandling\": \"string\",\n        \"ascending\": true,\n        \"property\": \"string\",\n        \"ignoreCase\": true\n      },\n      {\n        \"direction\": \"string\",\n        \"nullHandling\": \"string\",\n        \"ascending\": true,\n        \"property\": \"string\",\n        \"ignoreCase\": false\n      }\n    ]\n  },\n  \"size\": 9579,\n  \"number\": 7049,\n  \"content\": [\n    {\n      \"id\": 1962,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"severity\": \"HIGH\",\n      \"priority\": \"LOW\",\n      \"status\": \"VERIFIED\",\n      \"assignedDeveloperId\": 9147,\n      \"resolutionNote\": \"string\",\n      \"createdDate\": \"1974-02-05T06:29:03.201Z\",\n      \"updatedDate\": \"1989-05-21T15:41:26.309Z\"\n    },\n    {\n      \"id\": 513,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"severity\": \"CRITICAL\",\n      \"priority\": \"HIGH\",\n      \"status\": \"OPEN\",\n      \"assignedDeveloperId\": 6362,\n      \"resolutionNote\": \"string\",\n      \"createdDate\": \"2017-10-04T18:18:41.270Z\",\n      \"updatedDate\": \"1953-07-29T18:24:05.552Z\"\n    }\n  ],\n  \"sort\": [\n    {\n      \"direction\": \"string\",\n      \"nullHandling\": \"string\",\n      \"ascending\": true,\n      \"property\": \"string\",\n      \"ignoreCase\": false\n    },\n    {\n      \"direction\": \"string\",\n      \"nullHandling\": \"string\",\n      \"ascending\": false,\n      \"property\": \"string\",\n      \"ignoreCase\": false\n    }\n  ],\n  \"first\": true,\n  \"last\": false,\n  \"empty\": false\n}"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "search",
+              "item": [
+                {
+                  "name": "filter Defects",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/defects/search?status=ASSIGNED&severity=LOW&priority=MEDIUM&assignedDeveloperId=6816&page=0&size=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "defects",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "key": "status",
+                          "value": "ASSIGNED"
+                        },
+                        {
+                          "key": "severity",
+                          "value": "LOW"
+                        },
+                        {
+                          "key": "priority",
+                          "value": "MEDIUM"
+                        },
+                        {
+                          "key": "assignedDeveloperId",
+                          "value": "6816"
+                        },
+                        {
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "key": "size",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/defects/search?status=ASSIGNED&severity=LOW&priority=MEDIUM&assignedDeveloperId=6816&page=0&size=10",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "defects",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "ASSIGNED"
+                            },
+                            {
+                              "key": "severity",
+                              "value": "LOW"
+                            },
+                            {
+                              "key": "priority",
+                              "value": "MEDIUM"
+                            },
+                            {
+                              "key": "assignedDeveloperId",
+                              "value": "6816"
+                            },
+                            {
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "key": "size",
+                              "value": "10"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"totalElements\": 9482,\n  \"totalPages\": 8672,\n  \"numberOfElements\": 2782,\n  \"pageable\": {\n    \"unpaged\": true,\n    \"paged\": false,\n    \"pageNumber\": 8026,\n    \"pageSize\": 4748,\n    \"offset\": 6338,\n    \"sort\": [\n      {\n        \"direction\": \"string\",\n        \"nullHandling\": \"string\",\n        \"ascending\": true,\n        \"property\": \"string\",\n        \"ignoreCase\": true\n      },\n      {\n        \"direction\": \"string\",\n        \"nullHandling\": \"string\",\n        \"ascending\": true,\n        \"property\": \"string\",\n        \"ignoreCase\": false\n      }\n    ]\n  },\n  \"size\": 9579,\n  \"number\": 7049,\n  \"content\": [\n    {\n      \"id\": 1962,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"severity\": \"HIGH\",\n      \"priority\": \"LOW\",\n      \"status\": \"VERIFIED\",\n      \"assignedDeveloperId\": 9147,\n      \"resolutionNote\": \"string\",\n      \"createdDate\": \"1974-02-05T06:29:03.201Z\",\n      \"updatedDate\": \"1989-05-21T15:41:26.309Z\"\n    },\n    {\n      \"id\": 513,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"severity\": \"CRITICAL\",\n      \"priority\": \"HIGH\",\n      \"status\": \"OPEN\",\n      \"assignedDeveloperId\": 6362,\n      \"resolutionNote\": \"string\",\n      \"createdDate\": \"2017-10-04T18:18:41.270Z\",\n      \"updatedDate\": \"1953-07-29T18:24:05.552Z\"\n    }\n  ],\n  \"sort\": [\n    {\n      \"direction\": \"string\",\n      \"nullHandling\": \"string\",\n      \"ascending\": true,\n      \"property\": \"string\",\n      \"ignoreCase\": false\n    },\n    {\n      \"direction\": \"string\",\n      \"nullHandling\": \"string\",\n      \"ascending\": false,\n      \"property\": \"string\",\n      \"ignoreCase\": false\n    }\n  ],\n  \"first\": true,\n  \"last\": false,\n  \"empty\": false\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "get All Defects",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/defects?page=0&size=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "defects"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/defects?page=0&size=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "defects"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "key": "size",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"totalElements\": 9482,\n  \"totalPages\": 8672,\n  \"numberOfElements\": 2782,\n  \"pageable\": {\n    \"unpaged\": true,\n    \"paged\": false,\n    \"pageNumber\": 8026,\n    \"pageSize\": 4748,\n    \"offset\": 6338,\n    \"sort\": [\n      {\n        \"direction\": \"string\",\n        \"nullHandling\": \"string\",\n        \"ascending\": true,\n        \"property\": \"string\",\n        \"ignoreCase\": true\n      },\n      {\n        \"direction\": \"string\",\n        \"nullHandling\": \"string\",\n        \"ascending\": true,\n        \"property\": \"string\",\n        \"ignoreCase\": false\n      }\n    ]\n  },\n  \"size\": 9579,\n  \"number\": 7049,\n  \"content\": [\n    {\n      \"id\": 1962,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"severity\": \"HIGH\",\n      \"priority\": \"LOW\",\n      \"status\": \"VERIFIED\",\n      \"assignedDeveloperId\": 9147,\n      \"resolutionNote\": \"string\",\n      \"createdDate\": \"1974-02-05T06:29:03.201Z\",\n      \"updatedDate\": \"1989-05-21T15:41:26.309Z\"\n    },\n    {\n      \"id\": 513,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"severity\": \"CRITICAL\",\n      \"priority\": \"HIGH\",\n      \"status\": \"OPEN\",\n      \"assignedDeveloperId\": 6362,\n      \"resolutionNote\": \"string\",\n      \"createdDate\": \"2017-10-04T18:18:41.270Z\",\n      \"updatedDate\": \"1953-07-29T18:24:05.552Z\"\n    }\n  ],\n  \"sort\": [\n    {\n      \"direction\": \"string\",\n      \"nullHandling\": \"string\",\n      \"ascending\": true,\n      \"property\": \"string\",\n      \"ignoreCase\": false\n    },\n    {\n      \"direction\": \"string\",\n      \"nullHandling\": \"string\",\n      \"ascending\": false,\n      \"property\": \"string\",\n      \"ignoreCase\": false\n    }\n  ],\n  \"first\": true,\n  \"last\": false,\n  \"empty\": false\n}"
+                }
+              ]
+            },
+            {
+              "name": "create Defect",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"string\",\n  \"priority\": \"LOW\",\n  \"severity\": \"CRITICAL\",\n  \"title\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/defects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "defects"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"string\",\n  \"priority\": \"LOW\",\n  \"severity\": \"CRITICAL\",\n  \"title\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/defects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "defects"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 2322,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"severity\": \"LOW\",\n  \"priority\": \"LOW\",\n  \"status\": \"VERIFIED\",\n  \"assignedDeveloperId\": 5275,\n  \"resolutionNote\": \"string\",\n  \"createdDate\": \"1962-04-06T13:25:11.508Z\",\n  \"updatedDate\": \"1963-06-13T21:47:54.030Z\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "comments",
+          "item": [
+            {
+              "name": "create Comment",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"commentText\": \"string\",\n  \"defectId\": 4705\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/comments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "comments"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"commentText\": \"string\",\n  \"defectId\": 4705\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/comments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "comments"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 9509,\n  \"defectId\": 8054,\n  \"commentText\": \"string\",\n  \"createdByUsername\": \"string\",\n  \"createdDate\": \"2011-01-07T16:52:37.679Z\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "auth",
+          "item": [
+            {
+              "name": "register",
+              "item": [
+                {
+                  "name": "register",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"password\": \"string\",\n  \"role\": \"TESTER\",\n  \"username\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/auth/register",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "auth",
+                        "register"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"password\": \"string\",\n  \"role\": \"TESTER\",\n  \"username\": \"string\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/auth/register",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "auth",
+                            "register"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "login",
+              "item": [
+                {
+                  "name": "login",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"password\": \"string\",\n  \"username\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/auth/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "auth",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"password\": \"string\",\n  \"username\": \"string\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/auth/login",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "auth",
+                            "login"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"token\": \"string\"\n}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "get All Users",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 1712,\n    \"username\": \"string\",\n    \"role\": \"ADMIN\"\n  },\n  {\n    \"id\": 3826,\n    \"username\": \"string\",\n    \"role\": \"DEVELOPER\"\n  }\n]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "dashboard",
+          "item": [
+            {
+              "name": "get Dashboard",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/dashboard",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "dashboard"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/dashboard",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "dashboard"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"totalDefects\": 8124,\n  \"openDefects\": 5427,\n  \"resolvedDefects\": 2236,\n  \"closedDefects\": 7030,\n  \"severityCounts\": {\n    \"key_0\": 2107,\n    \"key_1\": 1577,\n    \"key_2\": 2141\n  },\n  \"recentCreatedDefects\": [\n    {\n      \"id\": 8515,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"severity\": \"CRITICAL\",\n      \"priority\": \"HIGH\",\n      \"status\": \"OPEN\",\n      \"assignedDeveloperId\": 6694,\n      \"resolutionNote\": \"string\",\n      \"createdDate\": \"1959-08-27T22:23:53.590Z\",\n      \"updatedDate\": \"1962-04-04T19:00:33.875Z\"\n    },\n    {\n      \"id\": 6525,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"severity\": \"MEDIUM\",\n      \"priority\": \"HIGH\",\n      \"status\": \"OPEN\",\n      \"assignedDeveloperId\": 9421,\n      \"resolutionNote\": \"string\",\n      \"createdDate\": \"2017-12-13T13:44:50.174Z\",\n      \"updatedDate\": \"1947-04-09T17:16:07.606Z\"\n    }\n  ],\n  \"recentClosedDefects\": [\n    {\n      \"id\": 5701,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"severity\": \"LOW\",\n      \"priority\": \"MEDIUM\",\n      \"status\": \"CLOSED\",\n      \"assignedDeveloperId\": 3896,\n      \"resolutionNote\": \"string\",\n      \"createdDate\": \"2022-10-29T19:43:17.971Z\",\n      \"updatedDate\": \"2022-05-27T01:18:50.205Z\"\n    },\n    {\n      \"id\": 6211,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"severity\": \"CRITICAL\",\n      \"priority\": \"LOW\",\n      \"status\": \"CLOSED\",\n      \"assignedDeveloperId\": 4622,\n      \"resolutionNote\": \"string\",\n      \"createdDate\": \"1955-03-13T12:05:21.052Z\",\n      \"updatedDate\": \"1966-06-17T15:33:59.173Z\"\n    }\n  ]\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}

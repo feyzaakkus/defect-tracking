@@ -23,9 +23,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED) // Başarılı kayıtta 201 Created dönecek[cite: 1]
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest request) {
         authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully!");
     }
 }
+

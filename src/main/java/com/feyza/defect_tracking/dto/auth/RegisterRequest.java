@@ -22,3 +22,4 @@ public class RegisterRequest {
     @NotNull(message = "Role is required")
     private Role role; // ADMIN, TESTER, DEVELOPER[cite: 1]
 }
+

@@ -1,5 +1,6 @@
 package com.feyza.defect_tracking.service;
 
+import com.feyza.defect_tracking.annotation.LogExecution;
 import com.feyza.defect_tracking.dto.auth.AuthRequest;
 import com.feyza.defect_tracking.dto.auth.AuthResponse;
 import com.feyza.defect_tracking.dto.auth.RegisterRequest;
@@ -25,6 +26,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @LogExecution(action = "LOGIN", entityType = "USER")
     public AuthResponse login(AuthRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -39,6 +41,7 @@ public class AuthService {
         return new AuthResponse(token);
     }
 
+    @LogExecution(action = "REGISTER", entityType = "USER")
     public void register(RegisterRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new BusinessException("Username is already taken!");
