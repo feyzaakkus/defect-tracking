@@ -26,11 +26,9 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        // Her başlatmada verileri sıfırlayarak şifre ve kullanıcı çakışmalarını çözer
         defectRepository.deleteAll();
         userRepository.deleteAll();
 
-        // 1. KULLANICILAR (Şifrelerin hepsi: 1234)
         User admin = new User();
         admin.setUsername("admin");
         admin.setPassword(passwordEncoder.encode("1234"));
@@ -52,7 +50,6 @@ public class DataInitializer implements CommandLineRunner {
 
         System.out.println("Sample users created successfully with encoded passwords (Password: 1234).");
 
-        // 2. DEFECT ÖRNEK VERİLERİ
         User defaultUser = userRepository.findByUsername("tester").orElseThrow();
 
         Defect defect1 = new Defect();

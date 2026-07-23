@@ -72,7 +72,6 @@ class DefectServiceTest {
         SecurityContextHolder.setContext(securityContext);
     }
 
-    // 1. DEFECT OLUŞTURMA TESTLERİ
     @Test
     @DisplayName("Should set status to OPEN when defect is created")
     void createDefect_ShouldSetStatusToOpen() {
@@ -103,7 +102,6 @@ class DefectServiceTest {
         verify(defectRepository, times(1)).save(any(Defect.class));
     }
 
-    // 2. STATUS GEÇİŞ TESTLERİ
     @Test
     @DisplayName("Should set status to ASSIGNED when defect is assigned to a developer")
     void assignDefect_ShouldChangeStatusToAssigned() {
@@ -156,7 +154,6 @@ class DefectServiceTest {
         );
     }
 
-    // 3. YETKİ KONTROL TESTLERİ
     @Test
     @DisplayName("Should throw BusinessException when non-creator TESTER tries to update defect")
     void updateDefect_NonCreator_ShouldThrowException() {
